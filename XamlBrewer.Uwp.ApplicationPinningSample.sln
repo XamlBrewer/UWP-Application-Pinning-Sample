@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlBrewer.Uwp.ApplicationPinningSample", "XamlBrewer.Uwp.ApplicationPinningSample\XamlBrewer.Uwp.ApplicationPinningSample.csproj", "{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Debug|ARM.ActiveCfg = Debug|ARM
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Debug|ARM.Build.0 = Debug|ARM
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Debug|ARM.Deploy.0 = Debug|ARM
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Debug|x64.ActiveCfg = Debug|x64
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Debug|x64.Build.0 = Debug|x64
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Debug|x64.Deploy.0 = Debug|x64
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Debug|x86.ActiveCfg = Debug|x86
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Debug|x86.Build.0 = Debug|x86
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Debug|x86.Deploy.0 = Debug|x86
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Release|ARM.ActiveCfg = Release|ARM
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Release|ARM.Build.0 = Release|ARM
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Release|ARM.Deploy.0 = Release|ARM
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Release|x64.ActiveCfg = Release|x64
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Release|x64.Build.0 = Release|x64
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Release|x64.Deploy.0 = Release|x64
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Release|x86.ActiveCfg = Release|x86
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Release|x86.Build.0 = Release|x86
+		{5736A3E6-53B3-4D3D-94A3-67F19CFAF8F7}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2002D172-3A85-4D94-856C-A93E32B5F8D0}
+	EndGlobalSection
+EndGlobal
