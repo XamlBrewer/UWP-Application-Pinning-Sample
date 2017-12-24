@@ -6,10 +6,9 @@
       mc:Ignorable="d"
       Foreground="{StaticResource PageForegroundBrush}">
 
-    <Grid Background="{StaticResource PageBackgroundBrush}"
-          Padding="0 32 0 0">
+    <Grid Background="{StaticResource PageBackgroundBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="74" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Foreground="{StaticResource PageTitleBrush}"
@@ -17,16 +16,16 @@
                    FontWeight="Light"
                    VerticalAlignment="Top"
                    HorizontalAlignment="Left"
-                   Margin="48 8 0 0">
+                   Margin="48 0 0 0">
                 <Run Text="Home" />
         </TextBlock>
         <Path Data="{StaticResource HomeIcon}"
               Fill="{StaticResource PageTitleBrush}"
               VerticalAlignment="Top"
               HorizontalAlignment="Right"
-              Height="48"
-              Width="48"
-              Margin="8"
+              Height="62"
+              Width="62"
+              Margin="0 12 12 0"
               Stretch="Uniform" />
         <TextBlock TextWrapping="WrapWholeWords"
                    Foreground="{StaticResource PageForegroundBrush}"
@@ -34,8 +33,15 @@
                    Grid.Row="1"
                    Margin="20"
                    FontFamily="Segoe UI">
-            <Run>This app is a test container for experimenting with Justin Liu's animated circular toggle button with corresponding animated panel.</Run>
-            <LineBreak /><LineBreak />
+            <Run>This app shows the different APIs for pinning and unpinning a UWP app to different destinations:</Run>
+            <LineBreak />
+            <Run>* pin to the task bar,</Run>
+            <LineBreak />
+            <Run>* pin to the start menu, and</Run>
+            <LineBreak />
+            <Run>* pin and unpin secondary tiles.</Run>
+            <LineBreak />
+            <LineBreak />
             <Run>Navigate to the Main Page to join the fun...</Run>
         </TextBlock>
         <Viewbox Grid.Row="1"

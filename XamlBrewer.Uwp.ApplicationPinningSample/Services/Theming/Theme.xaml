@@ -40,11 +40,11 @@
     <!-- Splitview Content -->
     <Color x:Key="PageBackgroundColor">#ffebf5ee</Color>
     <SolidColorBrush x:Key="PageBackgroundBrush"
-                     Color="WhiteSmoke" />
+                     Color="Linen" />
     <SolidColorBrush x:Key="PageTitleBrush"
                      Color="#FF749AAD" />
     <SolidColorBrush x:Key="PageForegroundBrush"
-                     Color="#FF749AAD" />
+                     Color="#ff333333" />
     <SolidColorBrush x:Key="PanelBackgroundBrush"
                      Color="WhiteSmoke" />
 </ResourceDictionary>

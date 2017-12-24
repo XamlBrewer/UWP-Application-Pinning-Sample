@@ -6,23 +6,15 @@
       mc:Ignorable="d"
       Foreground="{StaticResource PageForegroundBrush}">
 
-    <Grid Padding="0">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="74" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
-        <!-- Background -->
-        <Grid.Background>
-            <ImageBrush ImageSource="ms-appx:///Assets/pinthetail.png"
-                        Stretch="Uniform"
-                        Opacity=".2"
-                        AlignmentX="Right"
-                        AlignmentY="Bottom" />
-        </Grid.Background>
 
         <!-- Title Bar -->
         <TextBlock Foreground="{StaticResource PageTitleBrush}"
@@ -31,9 +23,8 @@
                    VerticalAlignment="Top"
                    HorizontalAlignment="Left"
                    Margin="48 0 0 0"
-                   FontFamily="Segoe UI">
-                <Run Text="App Pinning Sample"
-                     FontFamily="Segoe UI" />
+                   Grid.ColumnSpan="2">
+                <Run Text="App Pinning Sample" />
         </TextBlock>
         <Path Data="{StaticResource MainPageIcon}"
               Fill="{StaticResource PageTitleBrush}"
@@ -42,19 +33,75 @@
               Height="62"
               Width="62"
               Margin="0 12 12 0"
-              Stretch="Uniform" />
+              Stretch="Uniform"
+              Grid.ColumnSpan="2" />
 
         <!-- Content -->
-        <Grid Padding="20"
-              Grid.Row="1"
-              CornerRadius="12"
-              BorderBrush="{StaticResource PageForegroundBrush}"
-              BorderThickness="1"
-              Background="Transparent"
-              VerticalAlignment="Top"
-              HorizontalAlignment="Left"
-              Margin="48">
-
+        <Grid  BorderBrush="{StaticResource PageTitleBrush}"
+               BorderThickness="1.5"
+               Background="White"
+               CornerRadius="6"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Left"
+               Margin="48 20 20 20"
+               Grid.Row="1"
+               Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Status"
+                           FontWeight="SemiBold"
+                           Margin="12" />
+                <TextBlock Text="{x:Bind IsPinnedToTaskBar()}"
+                           Margin="12 12 12 0"
+                           Grid.Row="1" />
+                <TextBlock Text="{x:Bind IsPinnedToStartMenu()}"
+                           Margin="12 0"
+                           Grid.Row="2" />
+                <TextBlock Text="{x:Bind HasSecondaryTiles()}"
+                           Margin="12 0 12 12"
+                           Grid.Row="3"
+                           FontFamily="Segoe UI" />
+                <TextBlock Text="Commands"
+                           FontWeight="SemiBold"
+                           Margin="12"
+                           Grid.Row="4" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="12 0 12 12"
+                            Grid.Row="5">
+                    <AppBarButton Icon="Pin"
+                                  Label="Pin to Task Bar"
+                                  IsCompact="False"
+                                  Command="{x:Bind PinToTaskBarCommand }" />
+                    <AppBarButton Icon="Pin"
+                                  Label="Pin to Start Menu"
+                                  IsCompact="False"
+                                  Command="{x:Bind PinToStartMenuCommand}" />
+                    <AppBarButton Icon="Pin"
+                                  Label="Pin Secondary Tile"
+                                  IsCompact="False" />
+                    <AppBarButton Icon="UnPin"
+                                  Label="UnPin Secondary Tile"
+                                  IsCompact="False" />
+                </StackPanel>
+            </Grid>
         </Grid>
+
+        <!-- Image -->
+        <Image VerticalAlignment="Bottom"
+               HorizontalAlignment="Right"
+               Stretch="Uniform"
+               Source="ms-appx:///Assets/pinthetail.png"
+               Grid.Row="1"
+               Grid.Column="1" />
     </Grid>
 </Page>
