@@ -18,9 +18,6 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
 
             // Initialize Navigation Service.
             Navigation.Frame = SplitViewFrame;
-
-            // Navigate to home page.
-            Navigation.Navigate(typeof(HomePage));
         }
 
         // Navigate to another page.
@@ -58,6 +55,10 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Navigation.EnableBackButton();
+
+            // Navigate to home page.
+            Navigation.Navigate(typeof(HomePage), e.Parameter);
+
             base.OnNavigatedTo(e);
         }
 

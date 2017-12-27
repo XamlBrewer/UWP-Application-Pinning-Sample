@@ -54,15 +54,11 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
             return "This app has no secondary tiles.";
         }
 
-        public ICommand PinToTaskBarCommand
-        {
-                get { return new DelegateCommand(PinToTaskBar_Executed, PinToTaskBar_CanExecute); }
-        }
+        public ICommand PinToTaskBarCommand => new DelegateCommand(PinToTaskBar_Executed, PinToTaskBar_CanExecute);
 
-        public ICommand PinToStartMenuCommand
-        {
-            get { return new DelegateCommand(PinToStartMenu_Executed, PinToStartMenu_CanExecute); }
-        }
+        public ICommand PinToStartMenuCommand => new DelegateCommand(PinToStartMenu_Executed, PinToStartMenu_CanExecute); 
+
+        public ICommand PinSecondaryTileCommand => new DelegateCommand(PinSecondaryTile_Executed);
 
         private bool PinToTaskBar_CanExecute()
         {
@@ -85,5 +81,17 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
         {
             await Pinning.RequestPinToStartMenu();
         }
+
+        private async void PinSecondaryTile_Executed()
+        {
+            var tileName = await ModalView.InputStringDialogAsync("Pin a new tile.", "Please enter a name for the new secondary tile.", "Go ahead.", "Oops, I changed my mind.");
+            if (!string.IsNullOrEmpty(tileName))
+            {
+                await Pinning.RequestPinSecondaryTile(tileName);
+            }
+        }
+
+        private async void UnPinSecondaryTile_Executed()
+        { }
     }
 }

@@ -34,7 +34,7 @@
                    FontSize="20"
                    Grid.Row="1"
                    Margin="20"
-                   FontFamily="Segoe UI">
+                   >
             <Run>This app shows the different APIs for pinning and unpinning a UWP app to different destinations:</Run>
             <LineBreak />
             <Run>* pin to the task bar,</Run>

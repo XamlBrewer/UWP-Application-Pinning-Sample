@@ -15,14 +15,14 @@ namespace Mvvm.Services
             set { _frame = value; }
         }
 
-        public static bool Navigate(Type sourcePageType)
+        public static bool Navigate(Type sourcePageType, object parameter = null)
         {
             if (_frame.CurrentSourcePageType == sourcePageType)
             {
                 return true;
             }
 
-            return _frame.Navigate(sourcePageType);
+            return _frame.Navigate(sourcePageType, parameter);
         }
 
         public static void EnableBackButton()

@@ -41,6 +41,7 @@
             <LineBreak />
             <Run>* pin and unpin secondary tiles.</Run>
             <LineBreak />
+            <Run FontSize="40" Text="{x:Bind NavigationParameter}" />
             <LineBreak />
             <Run>Navigate to the Main Page to join the fun...</Run>
         </TextBlock>

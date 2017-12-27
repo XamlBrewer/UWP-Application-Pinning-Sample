@@ -101,6 +101,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Activation\Activation.cs" />
     <Compile Include="Services\Activation\ActivationExtensions.cs" />
+    <Compile Include="Services\Dialogs\ModalView.cs" />
     <Compile Include="Services\Icons\Icon.cs" />
     <Compile Include="Services\Navigation\Navigation.cs" />
     <Compile Include="Services\Pinning\Pinning.cs" />
@@ -120,7 +121,8 @@
     <None Include="XamlBrewer.Uwp.ApplicationPinningSample_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\pinthetail.png" />
+    <Content Include="Assets\PinTheTail.png" />
+    <Content Include="Assets\Square150x150SecondaryLogo.scale-200.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

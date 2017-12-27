@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
@@ -67,6 +64,33 @@ namespace Mvvm.Services
         {
             var tiles = await SecondaryTile.FindAllAsync();
             return tiles.Count > 0;
+        }
+
+        public async static Task<bool> RequestPinSecondaryTile(string tileName)
+        {
+            if (!SecondaryTile.Exists(tileName))
+            {
+                SecondaryTile tile = new SecondaryTile(
+                    tileName,
+                    tileName,
+                    tileName,
+                    new Uri("ms-appx:///Assets/Square150x150SecondaryLogo.png"),
+                    TileSize.Default);
+                tile.VisualElements.ShowNameOnSquare150x150Logo = true;
+                return await tile.RequestCreateAsync();
+            }
+
+            return true; // Tile existed already.
+        }
+
+        public async static Task<bool> RequestUnPinSecondaryTile(string tileName)
+        {
+            if (SecondaryTile.Exists(tileName))
+            {
+                return await new SecondaryTile(tileName).RequestDeleteAsync();
+            }
+
+            return true; // Tile did not exist.
         }
     }
 }

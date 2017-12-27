@@ -14,6 +14,7 @@ namespace Mvvm.Services
             await PreLaunchAsync(e);
 
             // Navigate
+            // Secondary Tile Id is in e.Arguments, and passed to page as e.Parameter in OnNavigatedTo.
             Window.Current.EnsureRootFrame().NavigateIfAppropriate(typeof(Shell), e.Arguments).Activate();
 
             // Custom post-launch service calls.

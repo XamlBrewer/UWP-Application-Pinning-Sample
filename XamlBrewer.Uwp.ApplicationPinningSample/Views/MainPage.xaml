@@ -88,7 +88,8 @@
                                   Command="{x:Bind PinToStartMenuCommand}" />
                     <AppBarButton Icon="Pin"
                                   Label="Pin Secondary Tile"
-                                  IsCompact="False" />
+                                  IsCompact="False"
+                                  Command="{x:Bind PinSecondaryTileCommand}" />
                     <AppBarButton Icon="UnPin"
                                   Label="UnPin Secondary Tile"
                                   IsCompact="False" />
