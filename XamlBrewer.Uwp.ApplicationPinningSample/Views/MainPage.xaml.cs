@@ -1,6 +1,7 @@
 ﻿using Mvvm;
 using Mvvm.Services;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
@@ -62,6 +63,8 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
 
         public ICommand PinSecondaryTileCommand => new DelegateCommand(PinSecondaryTile_Executed);
 
+        public ICommand UnPinSecondaryTileCommand => new DelegateCommand(UnPinSecondaryTile_Executed);
+
         private bool PinToTaskBar_CanExecute()
         {
             var isPinned = Task.Run<bool?>(() => Pinning.IsPinnedToTaskBar()).Result;
@@ -95,11 +98,17 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
 
         private async void UnPinSecondaryTile_Executed()
         {
+            var tileId = "Please enter a tile id.";
+            var tiles = Task.Run<List<string>>(() => Pinning.SecondaryTilesIds()).Result;
+            if (tiles.Count > 0)
+            {
+                tileId = tiles.First();
+            }
 
-            var tileName = await ModalView.InputStringDialogAsync("UnPin a secondary tile.", "Please enter a name for the new secondary tile.", "Go ahead.", "Oops, I changed my mind.");
+            var tileName = await ModalView.InputStringDialogAsync("UnPin a secondary tile.", tileId, "Go ahead.", "Oops, I changed my mind.");
             if (!string.IsNullOrEmpty(tileName))
             {
-                await Pinning.RequestPinSecondaryTile(tileName);
+                await Pinning.RequestUnPinSecondaryTile(tileName);
             }
         }
     }
