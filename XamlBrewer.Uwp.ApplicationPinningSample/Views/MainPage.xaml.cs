@@ -1,5 +1,6 @@
 ﻿using Mvvm;
 using Mvvm.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
@@ -48,7 +49,8 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
             var hasSecondaryTiles = Task.Run<bool>(() => Pinning.HasSecondaryTiles()).Result;
             if (hasSecondaryTiles)
             {
-                return "This app has secondary tiles.";
+                var tiles = Task.Run<List<string>>( () =>  Pinning.SecondaryTilesIds()).Result;
+                return "This app has secondary tiles: " + string.Join(", ", tiles) + ".";
             }
 
             return "This app has no secondary tiles.";
@@ -92,6 +94,13 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
         }
 
         private async void UnPinSecondaryTile_Executed()
-        { }
+        {
+
+            var tileName = await ModalView.InputStringDialogAsync("UnPin a secondary tile.", "Please enter a name for the new secondary tile.", "Go ahead.", "Oops, I changed my mind.");
+            if (!string.IsNullOrEmpty(tileName))
+            {
+                await Pinning.RequestPinSecondaryTile(tileName);
+            }
+        }
     }
 }

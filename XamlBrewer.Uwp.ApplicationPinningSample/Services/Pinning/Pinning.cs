@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
@@ -64,6 +65,21 @@ namespace Mvvm.Services
         {
             var tiles = await SecondaryTile.FindAllAsync();
             return tiles.Count > 0;
+        }
+
+        public async static Task<List<string>> SecondaryTilesIds()
+        {
+            var tiles = await SecondaryTile.FindAllAsync();
+            var result = new List<string>();
+            foreach (var tile in tiles)
+            {
+                if (!string.IsNullOrEmpty(tile.TileId))
+                {
+                    result.Add(tile.TileId);
+                }
+            }
+
+            return result;
         }
 
         public async static Task<bool> RequestPinSecondaryTile(string tileName)
