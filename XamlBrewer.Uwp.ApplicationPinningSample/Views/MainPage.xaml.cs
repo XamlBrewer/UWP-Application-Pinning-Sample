@@ -92,7 +92,7 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
             var tileName = await ModalView.InputStringDialogAsync("Pin a new tile.", "Please enter a name for the new secondary tile.", "Go ahead.", "Oops, I changed my mind.");
             if (!string.IsNullOrEmpty(tileName))
             {
-                await Pinning.RequestPinSecondaryTile(tileName);
+                await Pinning.RequestPinSecondaryTile(SanitizedTileName(tileName));
             }
         }
 
@@ -110,6 +110,12 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
             {
                 await Pinning.RequestUnPinSecondaryTile(tileName);
             }
+        }
+
+        private string SanitizedTileName(string tileName)
+        {
+            // TODO: complete if necessary...
+            return tileName.Replace(" ", "_");
         }
     }
 }
