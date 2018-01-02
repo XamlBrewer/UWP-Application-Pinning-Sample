@@ -104,7 +104,7 @@
     <Compile Include="Services\Dialogs\ModalView.cs" />
     <Compile Include="Services\Icons\Icon.cs" />
     <Compile Include="Services\Navigation\Navigation.cs" />
-    <Compile Include="Services\Pinning\Pinning.cs" />
+    <Compile Include="Services\Pinning\AppTile.cs" />
     <Compile Include="Services\Theming\Theme.cs" />
     <Compile Include="ViewModels\MenuItem.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />

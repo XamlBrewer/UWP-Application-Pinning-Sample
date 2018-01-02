@@ -9,7 +9,7 @@ using Windows.UI.StartScreen;
 
 namespace Mvvm.Services
 {
-    public class Pinning
+    public class AppTile
     {
         public async static Task<bool?> IsPinnedToTaskBar()
         {
@@ -87,7 +87,7 @@ namespace Mvvm.Services
             if (!SecondaryTile.Exists(tileName))
             {
                 SecondaryTile tile = new SecondaryTile(
-                    tileName,
+                    SanitizedTileName(tileName),
                     tileName,
                     tileName,
                     new Uri("ms-appx:///Assets/Square150x150SecondaryLogo.png"),
@@ -107,6 +107,12 @@ namespace Mvvm.Services
             }
 
             return true; // Tile did not exist.
+        }
+
+        private static string SanitizedTileName(string tileName)
+        {
+            // TODO: complete if necessary...
+            return tileName.Replace(" ", "_");
         }
     }
 }

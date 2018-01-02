@@ -17,7 +17,7 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
 
         public string IsPinnedToTaskBar()
         {
-            var isPinned = Task.Run<bool?>(() => Pinning.IsPinnedToTaskBar()).Result;
+            var isPinned = Task.Run<bool?>(() => AppTile.IsPinnedToTaskBar()).Result;
 
             switch (isPinned)
             {
@@ -32,7 +32,7 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
 
         public string IsPinnedToStartMenu()
         {
-            var isPinned = Task.Run<bool?>(() => Pinning.IsPinnedToStartMenu()).Result;
+            var isPinned = Task.Run<bool?>(() => AppTile.IsPinnedToStartMenu()).Result;
 
             switch (isPinned)
             {
@@ -47,10 +47,10 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
 
         public string HasSecondaryTiles()
         {
-            var hasSecondaryTiles = Task.Run<bool>(() => Pinning.HasSecondaryTiles()).Result;
+            var hasSecondaryTiles = Task.Run<bool>(() => AppTile.HasSecondaryTiles()).Result;
             if (hasSecondaryTiles)
             {
-                var tiles = Task.Run<List<string>>( () =>  Pinning.SecondaryTilesIds()).Result;
+                var tiles = Task.Run<List<string>>( () =>  AppTile.SecondaryTilesIds()).Result;
                 return "This app has secondary tiles: " + string.Join(", ", tiles) + ".";
             }
 
@@ -67,24 +67,24 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
 
         private bool PinToTaskBar_CanExecute()
         {
-            var isPinned = Task.Run<bool?>(() => Pinning.IsPinnedToTaskBar()).Result;
+            var isPinned = Task.Run<bool?>(() => AppTile.IsPinnedToTaskBar()).Result;
             return !isPinned ?? false;
         }
 
         private async void PinToTaskBar_Executed()
         {
-            await Pinning.RequestPinToTaskBar();
+            await AppTile.RequestPinToTaskBar();
         }
 
         private bool PinToStartMenu_CanExecute()
         {
-            var isPinned = Task.Run<bool?>(() => Pinning.IsPinnedToStartMenu()).Result;
+            var isPinned = Task.Run<bool?>(() => AppTile.IsPinnedToStartMenu()).Result;
             return !isPinned ?? false;
         }
 
         private async void PinToStartMenu_Executed()
         {
-            await Pinning.RequestPinToStartMenu();
+            await AppTile.RequestPinToStartMenu();
         }
 
         private async void PinSecondaryTile_Executed()
@@ -92,14 +92,14 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
             var tileName = await ModalView.InputStringDialogAsync("Pin a new tile.", "Please enter a name for the new secondary tile.", "Go ahead.", "Oops, I changed my mind.");
             if (!string.IsNullOrEmpty(tileName))
             {
-                await Pinning.RequestPinSecondaryTile(SanitizedTileName(tileName));
+                await AppTile.RequestPinSecondaryTile(tileName);
             }
         }
 
         private async void UnPinSecondaryTile_Executed()
         {
             var tileId = "Please enter a tile id.";
-            var tiles = Task.Run<List<string>>(() => Pinning.SecondaryTilesIds()).Result;
+            var tiles = Task.Run<List<string>>(() => AppTile.SecondaryTilesIds()).Result;
             if (tiles.Count > 0)
             {
                 tileId = tiles.First();
@@ -108,14 +108,8 @@ namespace XamlBrewer.Uwp.ApplicationPinningSample
             var tileName = await ModalView.InputStringDialogAsync("UnPin a secondary tile.", tileId, "Go ahead.", "Oops, I changed my mind.");
             if (!string.IsNullOrEmpty(tileName))
             {
-                await Pinning.RequestUnPinSecondaryTile(tileName);
+                await AppTile.RequestUnPinSecondaryTile(tileName);
             }
-        }
-
-        private string SanitizedTileName(string tileName)
-        {
-            // TODO: complete if necessary...
-            return tileName.Replace(" ", "_");
         }
     }
 }
