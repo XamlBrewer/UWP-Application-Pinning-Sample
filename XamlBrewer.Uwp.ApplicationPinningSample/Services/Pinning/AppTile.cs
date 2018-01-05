@@ -11,9 +11,13 @@ namespace Mvvm.Services
 {
     public class AppTile
     {
+        public static bool IsPinToTaskBarEnabled => ApiInformation.IsTypePresent("Windows.UI.Shell.TaskbarManager");
+
+        public static bool IsPinToStartMenuEnabled => ApiInformation.IsTypePresent("Windows.UI.StartScreen.StartScreenManager");
+
         public async static Task<bool?> IsPinnedToTaskBar()
         {
-            if (ApiInformation.IsTypePresent("Windows.UI.Shell.TaskbarManager"))
+            if (IsPinToTaskBarEnabled)
             {
                 return await TaskbarManager.GetDefault().IsCurrentAppPinnedAsync();
             }
@@ -25,7 +29,7 @@ namespace Mvvm.Services
 
         public static async Task<bool?> RequestPinToTaskBar()
         {
-            if (ApiInformation.IsTypePresent("Windows.UI.Shell.TaskbarManager"))
+            if (IsPinToTaskBarEnabled)
             {
                 return await TaskbarManager.GetDefault().RequestPinCurrentAppAsync();
             }
@@ -37,7 +41,7 @@ namespace Mvvm.Services
 
         public static async Task<bool?> IsPinnedToStartMenu()
         {
-            if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.StartScreenManager"))
+            if (IsPinToStartMenuEnabled)
             {
                 AppListEntry entry = (await Package.Current.GetAppListEntriesAsync())[0];
                 return await StartScreenManager.GetDefault().ContainsAppListEntryAsync(entry);
@@ -50,7 +54,7 @@ namespace Mvvm.Services
 
         public static async Task<bool?> RequestPinToStartMenu()
         {
-            if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.StartScreenManager"))
+            if (IsPinToStartMenuEnabled)
             {
                 AppListEntry entry = (await Package.Current.GetAppListEntriesAsync())[0];
                 return await StartScreenManager.GetDefault().RequestAddAppListEntryAsync(entry);
