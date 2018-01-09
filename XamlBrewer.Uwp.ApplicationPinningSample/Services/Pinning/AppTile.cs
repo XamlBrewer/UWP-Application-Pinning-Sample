@@ -116,7 +116,7 @@ namespace Mvvm.Services
         private static string SanitizedTileName(string tileName)
         {
             // TODO: complete if necessary...
-            return tileName.Replace(" ", "_");
+            return tileName.Replace(" ", "_").Replace("!","");
         }
     }
 }
