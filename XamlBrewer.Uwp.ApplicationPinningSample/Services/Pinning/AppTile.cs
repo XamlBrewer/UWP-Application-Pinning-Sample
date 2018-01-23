@@ -13,7 +13,24 @@ namespace Mvvm.Services
     {
         public static bool IsPinToTaskBarEnabled => ApiInformation.IsTypePresent("Windows.UI.Shell.TaskbarManager") && TaskbarManager.GetDefault().IsPinningAllowed;
 
-        public static bool IsPinToStartMenuEnabled => ApiInformation.IsTypePresent("Windows.UI.StartScreen.StartScreenManager");
+        public static bool IsPinToStartMenuEnabled
+        {
+            get
+            {
+                if (ApiInformation.IsTypePresent("Windows.UI.StartScreen.StartScreenManager"))
+                {
+                    return Task.Run<bool>(() => IsPinToStartMenuSupported()).Result;
+                }
+
+                return false;
+            }
+        }
+
+        private static async Task<bool> IsPinToStartMenuSupported()
+        {
+            AppListEntry entry = (await Package.Current.GetAppListEntriesAsync())[0];
+            return StartScreenManager.GetDefault().SupportsAppListEntry(entry);
+        }
 
         public async static Task<bool?> IsPinnedToTaskBar()
         {
@@ -116,7 +133,7 @@ namespace Mvvm.Services
         private static string SanitizedTileName(string tileName)
         {
             // TODO: complete if necessary...
-            return tileName.Replace(" ", "_").Replace("!","");
+            return tileName.Replace(" ", "_").Replace("!", "");
         }
     }
 }
