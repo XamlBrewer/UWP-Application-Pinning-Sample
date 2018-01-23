@@ -11,7 +11,7 @@ namespace Mvvm.Services
 {
     public class AppTile
     {
-        public static bool IsPinToTaskBarEnabled => ApiInformation.IsTypePresent("Windows.UI.Shell.TaskbarManager");
+        public static bool IsPinToTaskBarEnabled => ApiInformation.IsTypePresent("Windows.UI.Shell.TaskbarManager") && TaskbarManager.GetDefault().IsPinningAllowed;
 
         public static bool IsPinToStartMenuEnabled => ApiInformation.IsTypePresent("Windows.UI.StartScreen.StartScreenManager");
 
